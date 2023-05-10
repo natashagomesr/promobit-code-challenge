@@ -1,0 +1,87 @@
+@value constants: "/src/style/_constants.css";
+@value margin-padding-default, page-size-lg from constants;
+
+.content {
+  max-width: 1456px;
+  margin: auto;
+}
+
+.bgContentTop {
+  position: absolute;
+  height: 449px;
+  background: #2d0c5e;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.genreContainer {
+  width: 100%;
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+  place-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+.moviesContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 112px;
+}
+
+.h1 {
+  height: 108px;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  color: white;
+  padding-top: 50px;
+  font-size: 48px;
+}
+
+.h4 {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+}
+
+@media screen and (max-device-width: 480px) {
+  .bgContentTop {
+    height: 700px;
+  }
+
+  .h1 {
+    font-size: 24px;
+    text-align: start;
+    justify-content: flex-start;
+  }
+
+  .h4 {
+    text-align: start;
+    font-size: 14px;
+    justify-content: flex-start;
+    height: 2px;
+  }
+
+  .content {
+    margin: 12px;
+  }
+
+  .genreContainer {
+    justify-content: flex-start;
+    margin: 0;
+  }
+
+  .moviesContainer {
+    margin-top: 40px;
+    margin-bottom: 300px;
+  }
+}

@@ -1,0 +1,8 @@
+@value constants: "/src/style/_constants.css";
+@value font-size-default, margin-padding-default from constants;
+
+.container {
+  width: 100%;
+  display: flex;
+  margin: auto;
+}

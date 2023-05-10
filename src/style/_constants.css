@@ -1,0 +1,14 @@
+@value promobit-orange: #D18000;
+@value promobit-gray: #646464;
+@value promobit-black: #000000;
+@value promobit-white: #fff;
+@value promobit-purple: #5C16C5;
+@value promobit-purple-dark: #2D0C5E;
+
+@value page-size-sm: 640px;
+@value page-size-md: 768px;
+@value page-size-lg: 1024px;
+@value page-size-xl: 1280px;
+
+@value margin-padding-default: 16px;
+@value font-size-default: 16px;

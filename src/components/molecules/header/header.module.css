@@ -1,0 +1,19 @@
+@value constants: "/src/style/_constants.css";
+@value promobit-purple,  page-size-lg from constants;
+
+.header {
+  top: 0;
+  max-width: 100vw;
+  height: 60px;
+  display: flex;
+  position: sticky;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: promobit-purple;
+  padding-left: 112px;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .header {
+  }
+}

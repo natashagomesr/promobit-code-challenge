@@ -1,0 +1,26 @@
+@value constants: "/src/style/_constants.css";
+
+html,
+body {
+  height: 100%;
+  font-family: roboto;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  background-color: #e5e5e5;
+  top: 0;
+  width: 100%;
+}
+
+iframe {
+  pointer-events: none;
+}
+
+.app {
+  height: 100%;
+  font-family: roboto;
+  display: grid;
+  grid-column: auto;
+}

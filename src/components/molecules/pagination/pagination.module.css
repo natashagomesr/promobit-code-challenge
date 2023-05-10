@@ -1,0 +1,16 @@
+.paginationContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  color: #5c16c5;
+  align-items: center;
+}
+
+.button-pagination-container {
+  padding: 12px;
+}

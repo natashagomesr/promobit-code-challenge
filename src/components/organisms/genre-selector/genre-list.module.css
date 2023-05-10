@@ -1,0 +1,40 @@
+@value constants: "/src/style/_constants.css";
+@value margin-padding-default from constants;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+
+.selected-icon {
+  color: #d18000;
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 100px;
+  width: 17px;
+  height: 17px;
+  justify-content: center;
+  margin-top: 14px;
+  margin-right: 9px;
+}
+
+.design-genre {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  width: 86px;
+  height: 40px;
+  font-size: 16px;
+  min-inline-size: max-content;
+  padding: 3px;
+  font-weight: bold;
+}
+
+.button-genre-container {
+  display: flex;
+  margin: 8px;
+  border-radius: 4px;
+}
+
+@media screen and (max-device-width: 480px) {
+  .selected-icon {
+  }
+}
