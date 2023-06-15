@@ -1,17 +1,16 @@
 // @flow
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import Container from '../../components/atoms/container/container';
-import Loader from '../../components/atoms/loader/loader';
-import Header from '../../components/molecules/header/header';
-import MovieCard from '../../components/molecules/movie-card/movie-card';
-import Pagination from '../../components/molecules/pagination/pagination';
-// import Pagination from '../../components/molecules/pagination/pagination';
-import GenreSelector from '../../components/organisms/genre-selector/genre-selector';
+import * as React from "react";
+import { useEffect, useState } from "react";
+import Container from "../../components/atoms/container/container";
+import Loader from "../../components/atoms/loader/loader";
+import Header from "../../components/molecules/header/header";
+import MovieCard from "../../components/molecules/movie-card/movie-card";
+import Pagination from "../../components/molecules/pagination/pagination";
+import GenreSelector from "../../components/organisms/genre-selector/genre-selector";
 
-import { API_URL } from '../../constants';
+import { API_URL } from "../../constants";
 
-import style from './home.module.css';
+import style from "./home.module.css";
 
 function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -54,7 +53,7 @@ function HomePage() {
       <Container>
         <div className={style.bgContentTop} />
         <main className={style.content}>
-          <div className={style['top-content']}>
+          <div className={style["top-content"]}>
             <h1 className={style.h1}>
               Milhões de filmes, séries e pessoas para descobrir. Explore já.
             </h1>

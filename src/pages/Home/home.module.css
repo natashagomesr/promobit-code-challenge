@@ -32,8 +32,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
   margin-top: 112px;
+  margin-bottom: 78px;
 }
 
 .h1 {
@@ -55,7 +55,7 @@
 
 @media screen and (max-device-width: 480px) {
   .bgContentTop {
-    height: 700px;
+    height: 750px;
   }
 
   .h1 {
@@ -82,6 +82,6 @@
 
   .moviesContainer {
     margin-top: 40px;
-    margin-bottom: 300px;
+    margin-bottom: 104px;
   }
 }

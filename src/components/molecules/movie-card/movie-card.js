@@ -1,18 +1,11 @@
 // @flow
-import * as React from 'react';
+import * as React from "react";
 
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
-import style from './movie-card.module.css';
+import style from "./movie-card.module.css";
 
-type MovieProps = $Exact<{
-  id: string,
-  img: string,
-  name: string,
-  date: React.Node
-}>;
-
-function MovieCard({ id, img, name, date }: MovieProps): React$Element<'MovieCard'> {
+function MovieCard({ id, img, name, date }) {
   const history = useHistory();
 
   function handleClick() {
@@ -20,13 +13,18 @@ function MovieCard({ id, img, name, date }: MovieProps): React$Element<'MovieCar
   }
 
   return (
-    <div data-testid="header-title" id="header-title" className={style.text} onClick={handleClick}>
+    <div
+      data-testid="header-title"
+      id="header-title"
+      className={style.contentMovie}
+      onClick={handleClick}
+    >
       <img
         className={style.img}
         src={`https://www.themoviedb.org/t/p/w220_and_h330_face${img}`}
         alt="movie-card"
       />
-      {name}
+      <div className={style.titleName}>{name}</div>
       <div className={style.date}>{date}</div>
     </div>
   );

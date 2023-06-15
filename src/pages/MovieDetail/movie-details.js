@@ -1,22 +1,20 @@
 // @flow
-import { string } from 'prop-types';
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Container from '../../components/atoms/container/container';
-import Loader from '../../components/atoms/loader/loader';
-import Header from '../../components/molecules/header/header';
-import { API_URL, URL_YOUTUBE } from '../../constants';
+import * as React from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Container from "../../components/atoms/container/container";
+import Header from "../../components/molecules/header/header";
+import { API_URL, URL_YOUTUBE } from "../../constants";
 
-import style from './movie-details.module.css';
+import style from "./movie-details.module.css";
 
 type ReleasesAge = $Exact<{
-  certification: string
+  certification: string,
 }>;
 
 type Genres = $Exact<{
   name: string,
-  id: integer
+  id: integer,
 }>;
 
 type MovieDetailsProps = $Exact<{
@@ -29,24 +27,24 @@ type MovieDetailsProps = $Exact<{
   vote_average: number,
   vote_count: integer,
   release_date: React.Node,
-  date: React.Node
+  date: React.Node,
 }>;
 
 type Cast = $Exact<{
   name: string,
   original_name: string,
   character: string,
-  profile_path: string
+  profile_path: string,
 }>;
 
 type Crew = $Exact<{
   original_name: string,
-  job: string
+  job: string,
 }>;
 
 type CastMovieProps = $Exact<{
   cast: Cast,
-  crew: Crew
+  crew: Crew,
 }>;
 
 function MovieDetails(): MovieDetailsProps {
@@ -57,10 +55,24 @@ function MovieDetails(): MovieDetailsProps {
   const [movieTrailer, setMovieTrailer] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [youtubeTrailerKey, setYoutubeTrailerKey] = useState('');
+  const [youtubeTrailerKey, setYoutubeTrailerKey] = useState("");
   const [reviewUsers, setReviewUsers] = useState([]);
 
   const { movieId } = useParams();
+
+  const converterRunTime = (minutes) => {
+    const hours = Math.floor(minutes / 60);
+    const min = minutes % 60;
+    const textHours = `00${hours}`.slice(-2);
+    const textMinutes = `00${min}`.slice(-2);
+
+    return `${textHours}h${textMinutes}m`;
+  };
+
+  const changeDateFormatTo = (date = "") => {
+    const [yyyy, mm, dd] = date.split(/-/g);
+    return `${dd}/${mm}/${yyyy}`;
+  };
 
   function getCast(): CastMovieProps {
     fetch(
@@ -80,7 +92,9 @@ function MovieDetails(): MovieDetailsProps {
     )
       .then((response) => response.json())
       .then((data) => {
-        const releaseDateBRAge = data.results.find((result) => result.iso_3166_1 === 'BR');
+        const releaseDateBRAge = data.results.find(
+          (result) => result.iso_3166_1 === "BR"
+        );
         const certification = releaseDateBRAge.release_dates[0].certification;
 
         setCertificationAge(certification);
@@ -97,7 +111,9 @@ function MovieDetails(): MovieDetailsProps {
         setMovieTrailer(data.results);
         console.log(data);
 
-        const { key } = data.results.find((result) => result.site === 'YouTube');
+        const { key } = data.results.find(
+          (result) => result.site === "YouTube"
+        );
 
         setYoutubeTrailerKey(key);
 
@@ -106,7 +122,9 @@ function MovieDetails(): MovieDetailsProps {
   }
 
   function getMovieDetails() {
-    fetch(`${API_URL}/movie/${movieId}?api_key=0ec265d8af63bc76218453cc67695049&language=en-US`)
+    fetch(
+      `${API_URL}/movie/${movieId}?api_key=0ec265d8af63bc76218453cc67695049&language=en-US`
+    )
       .then((response) => response.json())
       .then((data) => {
         setMovieDetails(data);
@@ -153,26 +171,26 @@ function MovieDetails(): MovieDetailsProps {
         <div className={style.bgContentTop}></div>
         <main className={style.content}>
           <div className={style.contentTop}>
-            <div className={style['poster']}>
-              {' '}
+            <div className={style["poster"]}>
+              {" "}
               <img
                 src={`https://www.themoviedb.org/t/p/w220_and_h330_face${movieDetails.poster_path}`}
                 alt="movie-poster"
-              />{' '}
+              />{" "}
             </div>
 
             <div className={style.contentTopText}>
               <div className={style.title}> {movieDetails.title} </div>
               <div className={style.contentSpecifications}>
                 <div>{certificationAge} anos • </div>
-                <div>{movieDetails.release_date} • </div>
+                <div>{changeDateFormatTo(movieDetails.release_date)} • </div>
                 <div className={style.genresName}>
                   {movieDetails?.genres?.map((genresName) => {
                     return genresName.name;
-                  })}{' '}
-                  •{' '}
+                  })}{" "}
+                  •{" "}
                 </div>
-                <div>{movieDetails.runtime} </div>
+                <div>{converterRunTime(movieDetails.runtime)} </div>
               </div>
               <div className={style.textAverage}>Avaliação dos usuários</div>
               <svg className={style.voteAverageSvg}>
@@ -182,7 +200,7 @@ function MovieDetails(): MovieDetailsProps {
                   cy="30"
                   fill="transparent"
                   stroke="lightgrey"
-                  stroke-width="1rem"
+                  stroke-width="0.5rem"
                   stroke-dasharray="439.8"
                   stroke-dashoffset="0"
                 ></circle>
@@ -191,16 +209,17 @@ function MovieDetails(): MovieDetailsProps {
                   cx="30"
                   cy="30"
                   fill="transparent"
-                  stroke="blue"
-                  stroke-width="1rem"
+                  stroke="#14FF00"
+                  stroke-width="0.5rem"
                   stroke-dasharray="439.8"
                   stroke-dashoffset="66"
                 ></circle>
-                <div className={style.voteAverage}>{movieDetails.vote_average} </div>
+                <div className={style.voteAverage}>
+                  {movieDetails.vote_average}{" "}
+                </div>
               </svg>
               <div className={style.textOverview}>Sinopse</div>
               <div className={style.overview}>{movieDetails.overview} </div>
-
               <div className={style.contentCrew}>
                 {crewMovie?.map((crewJobsPerson) => (
                   <div className={style.crewJobContainer}>
@@ -212,7 +231,8 @@ function MovieDetails(): MovieDetailsProps {
             </div>
           </div>
 
-          <div className={style.backgroundCon}>
+          <div className={style.backgroundContainer}>
+            <div className={style.textCast}>Elenco original</div>
             <div className={style.contentCast}>
               <div className={style.actorPoster}>
                 {castMovie?.map((actor) => {
@@ -223,13 +243,18 @@ function MovieDetails(): MovieDetailsProps {
                           className={style.contentActorPoster}
                           src={`https://www.themoviedb.org/t/p/w220_and_h330_face${actor.profile_path}`}
                           alt="actor-poster"
-                          height={'221.92px'}
-                          width={'175px'}
+                          height={"221.92px"}
+                          width={"175px"}
                         />
 
                         <div>
-                          <div className={style.nameActor}>{actor.original_name}</div>
-                          <div className={style.character}> {actor.character}</div>
+                          <div className={style.nameActor}>
+                            {actor.original_name}
+                          </div>
+                          <div className={style.character}>
+                            {" "}
+                            {actor.character}
+                          </div>
                         </div>
                       </div>
                     );
@@ -238,6 +263,7 @@ function MovieDetails(): MovieDetailsProps {
             </div>
 
             <div className={style.contentTrailer}>
+              <div className={style.textTrailer}>Trailer</div>
               {youtubeTrailerKey && (
                 <iframe
                   width="907"
@@ -251,19 +277,22 @@ function MovieDetails(): MovieDetailsProps {
               )}
             </div>
 
+            <div className={style.textRecomendations}>Recomendações</div>
             <div className={style.contentRecommendations}>
               {recommendations.map((recommendation) => {
                 return (
                   <div className={style.posterRecommendations}>
-                    {' '}
+                    {" "}
                     <img
                       className={style.contentPoster}
                       src={`https://www.themoviedb.org/t/p/w220_and_h330_face${recommendation.poster_path}`}
                       alt="poster-recommendations"
-                      height={'264px'}
-                      width={'176px'}
+                      height={"264px"}
+                      width={"176px"}
                     />
-                    <div className={style.recommendationTitle}>{recommendation.original_title}</div>
+                    <div className={style.recommendationTitle}>
+                      {recommendation.original_title}
+                    </div>
                     <div className={style.recommendationReleaseDate}>
                       {recommendation.release_date}
                     </div>
