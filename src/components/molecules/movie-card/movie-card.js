@@ -11,6 +11,10 @@ function MovieCard({ id, img, name, date }) {
   function handleClick() {
     history.push(`/movie/${id}`);
   }
+  const changeDateFormatTo = (date = "") => {
+    const [yyyy, mm, dd] = date.split(/-/g);
+    return `${dd}/${mm}/${yyyy}`;
+  };
 
   return (
     <div
@@ -25,7 +29,7 @@ function MovieCard({ id, img, name, date }) {
         alt="movie-card"
       />
       <div className={style.titleName}>{name}</div>
-      <div className={style.date}>{date}</div>
+      <div className={style.date}>{changeDateFormatTo(date)}</div>
     </div>
   );
 }

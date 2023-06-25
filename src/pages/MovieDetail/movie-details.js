@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Container from "../../components/atoms/container/container";
 import Header from "../../components/molecules/header/header";
-import { API_URL, URL_YOUTUBE } from "../../constants";
+import { API_URL } from "../../constants";
 
 import style from "./movie-details.module.css";
 

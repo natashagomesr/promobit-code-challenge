@@ -10,6 +10,11 @@
   flex-direction: row;
   color: #5c16c5;
   align-items: center;
+  cursor: pointer;
+}
+
+.button-pagination:hover {
+  color: #1d0247;
 }
 
 .button-pagination-container {
